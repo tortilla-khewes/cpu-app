@@ -1,0 +1,31 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.routes import auth, records
+from app.database import ensure_db_exists, close_client
+from contextlib import asynccontextmanager
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await ensure_db_exists()
+    yield
+    await close_client()
+
+
+app = FastAPI(title="Tortilla CPU CCP API", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(auth.router)
+app.include_router(records.router)
+
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}

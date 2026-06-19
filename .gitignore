@@ -1,0 +1,42 @@
+# ── Dependencies ─────────────────────────────────────────────────────────────
+frontend/node_modules/
+
+# ── Build output ──────────────────────────────────────────────────────────────
+frontend/dist/
+frontend/.vite/
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Python virtual environments ───────────────────────────────────────────────
+backend/venv/
+backend/env/
+backend/.venv/
+
+# ── Environment variables (keep .env.example) ─────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Local database / dev data ─────────────────────────────────────────────────
+backend/local_db.json
+
+# ── Claude Code local settings ────────────────────────────────────────────────
+.claude/settings.local.json
+
+# ── OS generated files ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ── Editor / IDE ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+.vs/
+*.swp
+*.swo
+*.sublime-workspace
