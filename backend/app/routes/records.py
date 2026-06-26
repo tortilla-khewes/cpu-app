@@ -143,4 +143,4 @@ async def delete_record(record_id: str, token: dict = Depends(verify_token)):
     doc = items[0]
     if doc.get("status") != "draft":
         raise HTTPException(status_code=400, detail="Only draft records can be deleted")
-    await container.delete_item(item=doc["id"], partition_key=doc["product_key"])
+    await container.delete_item(item=doc["id"], partition_key=doc["record_id"])
