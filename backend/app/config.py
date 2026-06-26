@@ -19,10 +19,14 @@ class Settings(BaseSettings):
     jwt_secret: str = "demo-secret-change-in-production"
     jwt_algorithm: str = "HS256"
     jwt_expire_hours: int = 24
-    # CORS — comma-separated list of allowed origins, e.g.:
+    # CORS — comma-separated string of allowed origins, e.g.:
     #   CORS_ORIGINS=https://ashy-glacier-0a0f3fd03.azurestaticapps.net,https://localhost:5173
     # Defaults to wildcard for local development only.
-    cors_origins: list[str] = ["*"]
+    cors_origins: str = "*"
+
+    @property
+    def cors_origins_list(self) -> list[str]:
+        return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
 
     @model_validator(mode="after")
     def _validate_production_config(self) -> "Settings":
