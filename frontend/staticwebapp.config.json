@@ -15,7 +15,35 @@
       "allowedRoles": ["anonymous"]
     },
     {
-      "route": "/",
+      "route": "/assets/*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.css",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.js",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.ico",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.png",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.svg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.woff",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.woff2",
       "allowedRoles": ["anonymous"]
     },
     {
@@ -25,11 +53,21 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/.auth/*"]
+    "exclude": [
+      "/.auth/*",
+      "/assets/*",
+      "/*.css",
+      "/*.js",
+      "/*.ico",
+      "/*.png",
+      "/*.svg",
+      "/*.woff",
+      "/*.woff2"
+    ]
   },
   "responseOverrides": {
     "401": {
-      "redirect": "/.auth/login/aad?post_login_redirect_uri=/",
+      "redirect": "/.auth/login/aad?post_login_redirect_uri=SERVER_REQUEST_URI",
       "statusCode": 302
     }
   },
